@@ -1,6 +1,9 @@
 <div>
   <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
-  <div *ngIf="!isLoading">{{ pokemons | json }}</div>
+  <div *ngIf="!isLoading">
+    {{ firstPokemon | json }}
+    {{ secondPokemon | json }}
+  </div>
   <mat-paginator
     #paginator
     (page)="handlePageEvent($event)"

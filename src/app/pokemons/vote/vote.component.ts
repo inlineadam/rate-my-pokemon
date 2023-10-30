@@ -22,6 +22,9 @@ export class VoteComponent implements OnInit {
   fetchNextUrl: string | null = null;
   fetchPreviousUrl: string | null = null;
 
+  firstPokemon: PokemonNamedAPIResource | null = null;
+  secondPokemon: PokemonNamedAPIResource | null = null;
+
   constructor(private pokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
@@ -42,6 +45,22 @@ export class VoteComponent implements OnInit {
     this.paginatorLength = data.count;
     this.fetchNextUrl = data.next;
     this.fetchPreviousUrl = data.previous;
+
+    this.getTwoRandomPokemons();
+  }
+
+  getTwoRandomPokemons() {
+    this.firstPokemon = null;
+    this.secondPokemon = null;
+
+    const firstPokemonIndex = Math.floor(Math.random() * this.pokemons.length);
+    let secondPokemonIndex = Math.floor(Math.random() * this.pokemons.length);
+    while (secondPokemonIndex === firstPokemonIndex) {
+      secondPokemonIndex = Math.floor(Math.random() * this.pokemons.length);
+    }
+
+    this.firstPokemon = this.pokemons[firstPokemonIndex];
+    this.secondPokemon = this.pokemons[secondPokemonIndex];
   }
 
   handlePageEvent(e: PageEvent) {
