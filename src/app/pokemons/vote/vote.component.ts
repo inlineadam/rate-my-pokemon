@@ -4,6 +4,7 @@ import {
   PokemonNamedAPIResource,
   PokemonResults,
 } from 'src/app/shared/models/pokemons.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-vote',
@@ -13,8 +14,13 @@ import {
 export class VoteComponent implements OnInit {
   readonly pageSize = 50;
 
+  paginatorLength = 0;
+  pageIndex = 0;
+
   isLoading = false;
   pokemons: PokemonNamedAPIResource[] = [];
+  fetchNextUrl: string | null = null;
+  fetchPreviousUrl: string | null = null;
 
   constructor(private pokemonsService: PokemonsService) {}
 
@@ -33,5 +39,18 @@ export class VoteComponent implements OnInit {
 
   processResult(data: PokemonResults) {
     this.pokemons = data.results;
+    this.paginatorLength = data.count;
+    this.fetchNextUrl = data.next;
+    this.fetchPreviousUrl = data.previous;
+  }
+
+  handlePageEvent(e: PageEvent) {
+    if (this.pageIndex < e.pageIndex) {
+      this.fetchPokemons(this.fetchNextUrl!);
+    }
+    if (this.pageIndex > e.pageIndex) {
+      this.fetchPokemons(this.fetchPreviousUrl!);
+    }
+    this.pageIndex = e.pageIndex;
   }
 }

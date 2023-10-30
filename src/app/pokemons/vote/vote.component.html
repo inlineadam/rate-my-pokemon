@@ -1,2 +1,15 @@
-<p>vote works!</p>
-{{ pokemons | json }}
+<div>
+  <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
+  <div *ngIf="!isLoading">{{ pokemons | json }}</div>
+  <mat-paginator
+    #paginator
+    (page)="handlePageEvent($event)"
+    [length]="paginatorLength"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="false"
+    [hidePageSize]="false"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
