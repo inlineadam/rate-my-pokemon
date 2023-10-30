@@ -25,6 +25,10 @@ export class PokemonsService {
   }
 
   getTopRatedPokemons() {
+    const topRatedPokemons = localStorage.getItem('top-rated-pokemons');
+    if (topRatedPokemons) {
+      this.topRatedPokemons = JSON.parse(topRatedPokemons);
+    }
     return this.topRatedPokemons.sort((a, b) => b.score - a.score);
   }
 
@@ -41,5 +45,10 @@ export class PokemonsService {
     } else {
       this.topRatedPokemons[pokemonIndex].score++;
     }
+
+    localStorage.setItem(
+      'top-rated-pokemons',
+      JSON.stringify(this.topRatedPokemons)
+    );
   }
 }
