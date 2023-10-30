@@ -24,5 +24,9 @@ export class VoteCardComponent {
       .pipe(take(1));
   }
 
-  onVote() {}
+  onVote() {
+    if (this.pokemon) {
+      this.pokemonsService.voteForPokemon(this.pokemon);
+    }
+  }
 }

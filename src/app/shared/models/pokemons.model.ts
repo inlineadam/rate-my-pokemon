@@ -10,6 +10,11 @@ export interface PokemonNamedAPIResource {
   url: string;
 }
 
+export interface PokemonRateItem {
+  pokemon: PokemonNamedAPIResource;
+  score: number;
+}
+
 export interface PokemonDetails {
   id: number;
   name: string;
