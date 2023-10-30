@@ -72,4 +72,8 @@ export class VoteComponent implements OnInit {
     }
     this.pageIndex = e.pageIndex;
   }
+
+  onVote() {
+    this.getTwoRandomPokemons();
+  }
 }

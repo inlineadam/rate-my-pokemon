@@ -5,10 +5,12 @@
     <app-vote-card
       *ngIf="firstPokemon"
       [pokemon]="firstPokemon"
+      (vote)="onVote()"
     ></app-vote-card>
     <app-vote-card
       *ngIf="secondPokemon"
       [pokemon]="secondPokemon"
+      (vote)="onVote()"
     ></app-vote-card>
   </div>
   <mat-paginator

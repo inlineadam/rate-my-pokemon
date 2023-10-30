@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   PokemonDetails,
   PokemonNamedAPIResource,
@@ -13,6 +13,7 @@ import { Observable, take } from 'rxjs';
 })
 export class VoteCardComponent {
   @Input() pokemon: PokemonNamedAPIResource | undefined;
+  @Output() vote = new EventEmitter<void>();
 
   pokemonDetails$: Observable<PokemonDetails> | undefined;
 
@@ -27,6 +28,7 @@ export class VoteCardComponent {
   onVote() {
     if (this.pokemon) {
       this.pokemonsService.voteForPokemon(this.pokemon);
+      this.vote.emit();
     }
   }
 }
