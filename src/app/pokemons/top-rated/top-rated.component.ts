@@ -27,6 +27,7 @@ export class TopRatedComponent {
           name: item.pokemon.name,
           score: item.score,
         };
-      });
+      })
+      .slice(0, 10);
   }
 }
