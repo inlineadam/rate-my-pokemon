@@ -1,8 +1,15 @@
+<h1 class="mat-h1 header">Vote for your favorite Pokemon</h1>
 <div>
   <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
-  <div *ngIf="!isLoading">
-    {{ firstPokemon | json }}
-    {{ secondPokemon | json }}
+  <div *ngIf="!isLoading" class="card-container">
+    <app-vote-card
+      *ngIf="firstPokemon"
+      [pokemon]="firstPokemon"
+    ></app-vote-card>
+    <app-vote-card
+      *ngIf="secondPokemon"
+      [pokemon]="secondPokemon"
+    ></app-vote-card>
   </div>
   <mat-paginator
     #paginator

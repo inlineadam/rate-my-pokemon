@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 
 const routes = [{ path: '', component: VoteComponent }];
 
@@ -16,6 +17,7 @@ const routes = [{ path: '', component: VoteComponent }];
     RouterModule.forChild(routes),
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatCardModule,
   ],
 })
 export class VoteModule {}
