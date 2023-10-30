@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { PokemonsService } from '../pokemons.service';
-import { PokemonRateItem } from 'src/app/shared/models/pokemons.model';
+
+export interface TopRatedElement {
+  position: number;
+  name: string;
+  score: number;
+}
 
 @Component({
   selector: 'app-top-rated',
@@ -8,11 +13,20 @@ import { PokemonRateItem } from 'src/app/shared/models/pokemons.model';
   styleUrls: ['./top-rated.component.scss'],
 })
 export class TopRatedComponent {
-  topRatedPokemons: PokemonRateItem[] = [];
+  displayedColumns: string[] = ['position', 'name', 'score'];
+  dataSource: TopRatedElement[] = [];
 
   constructor(private pokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
-    this.topRatedPokemons = this.pokemonsService.getTopRatedPokemons();
+    this.dataSource = this.pokemonsService
+      .getTopRatedPokemons()
+      .map((item, index) => {
+        return {
+          position: index + 1,
+          name: item.pokemon.name,
+          score: item.score,
+        };
+      });
   }
 }
