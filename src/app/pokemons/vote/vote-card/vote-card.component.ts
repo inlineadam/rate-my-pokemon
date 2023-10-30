@@ -22,7 +22,6 @@ export class VoteCardComponent {
     this.pokemonDetails$ = this.pokemonsService
       .fetchPokemonDetails(this.pokemon!.url)
       .pipe(take(1));
-    console.log(this.pokemonDetails$);
   }
 
   onVote() {}
