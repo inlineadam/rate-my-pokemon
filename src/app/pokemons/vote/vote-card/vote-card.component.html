@@ -3,6 +3,9 @@
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{ pokemonDetails.name }}</mat-card-title>
+        <mat-card-subtitle
+          >Types: {{ pokemonDetails.types | joinTypes }}</mat-card-subtitle
+        >
         <img mat-card-xl-image [src]="pokemonDetails.sprites.front_default" />
       </mat-card-title-group>
     </mat-card-header>
